@@ -129,6 +129,7 @@ export const shareInstagramStory = async (backgroundColoriOS: string, stickerIma
     },
     android: {
       social: Share.Social.INSTAGRAM,
+      url: stickerImage,
       forceDialog: true,
     },
   });
