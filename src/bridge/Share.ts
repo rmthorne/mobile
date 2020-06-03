@@ -8,7 +8,7 @@ const RNShare = NativeModules.RNShare;
 
 const queries = Platform.select({
   ios: {
-    instagram: 'instagram://app',
+    instagram: 'instagram://',
   },
   android: {
     instagram: 'com.instagram.android',
@@ -26,6 +26,7 @@ const isAvailableiOS = async (platform: ShareablePlatform) => {
     const target: string | undefined = queries![platform];
     return await Linking.canOpenURL(target!);
   } catch (error) {
+    console.log('error', error);
     return false;
   }
 };
@@ -110,14 +111,19 @@ export const shareMessages = async (message: string | undefined) => {
     message,
   };
 
-  shareToSingleApp(options);
+  try {
+    shareToSingleApp(options);
+  } catch (error) {
+    console.log('aaaa', error);
+  }
 };
 
-export const shareInstagramStory = async (backgroundColoriOS: string) => {
+export const shareInstagramStory = async (backgroundColoriOS: string, stickerImage: string) => {
   const platformOptions = Platform.select({
     ios: {
       social: Share.Social.INSTAGRAM_STORIES,
       method: Share.InstagramStories.SHARE_STICKER_IMAGE,
+      stickerImage,
       backgroundBottomColor: backgroundColoriOS,
       backgroundTopColor: backgroundColoriOS,
     },

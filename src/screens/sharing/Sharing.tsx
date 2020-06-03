@@ -32,7 +32,7 @@ export const SharingScreen = () => {
         [platform]: () => {
           switch (platform) {
             case 'instagram': {
-              shareInstagramStory(theme.colors.mainBackground);
+              shareInstagramStory(theme.colors.mainBackground, i18n.translate('Sharing.InstagramImageUrl'));
               break;
             }
             case 'messages': {
