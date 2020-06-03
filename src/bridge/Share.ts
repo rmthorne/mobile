@@ -112,9 +112,9 @@ export const shareMessages = async (message: string | undefined) => {
   };
 
   try {
-    shareToSingleApp(options);
+    await shareToSingleApp(options);
   } catch (error) {
-    console.log('aaaa', error);
+    console.log('>>> error sharing messages:', error);
   }
 };
 
